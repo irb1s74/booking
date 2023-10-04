@@ -1,0 +1,43 @@
+.inputWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.focused {
+}
+
+.input {
+  padding: 7px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--hint-color);
+  background: var(--element-color);
+  width: 100%;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  outline: none;
+
+  &::placeholder {
+    color: var(--hint-color);
+  }
+
+  &__helperText {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    color: var(--cancel-color);
+    margin-left: 8px;
+  }
+}
+
+.error {
+  input {
+    border: 1px solid #FECACA;
+    background: #FEF2F2;
+    color: var(--cancel-color)
+  }
+}

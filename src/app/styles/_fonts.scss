@@ -1,0 +1,7 @@
+@import "mixin/font-face";
+
+@include font-face("Inter", "shared/assets/fonts/Inter-Regular", 400, normal);
+@include font-face("Inter", "shared/assets/fonts/Inter-Medium", 500, medium);
+@include font-face("Inter", "shared/assets/fonts/Inter-SemiBold", 600, semi-bold);
+@include font-face("Inter", "shared/assets/fonts/Inter-Bold", 700, bold);
+

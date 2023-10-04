@@ -1,0 +1,13 @@
+@import "reset";
+@import "fonts";
+@import "global";
+@import "themes/normal";
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  font-family: var(--font-family-text);
+  color: var(--text-color);
+}
