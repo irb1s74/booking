@@ -1,0 +1,42 @@
+.radio {
+  display: flex;
+  align-items: center;
+
+  input {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    background-color: var(--element-color);
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before {
+      display: block;
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: var(--text-color);
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.1s ease-in-out;
+    }
+
+    &:checked {
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+
+  label {
+    margin-left: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

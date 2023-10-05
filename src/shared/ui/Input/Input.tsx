@@ -2,15 +2,11 @@ import React, { InputHTMLAttributes, memo, ReactNode, useEffect, useRef, useStat
 import cls from './Input.module.scss'
 import classNames from 'classnames'
 
-type HTMLInputProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'onChange' | 'readOnly' | 'size'
->
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'readOnly' | 'size'>
 
 interface InputProps extends HTMLInputProps {
   className?: string
   value?: string | number
-  onChange?: (value: string) => void
   autofocus?: boolean
   readonly?: boolean
   error?: boolean
@@ -40,10 +36,6 @@ export const Input = memo((props: InputProps) => {
     }
   }, [autofocus])
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.value)
-  }
-
   const onBlur = () => {
     setIsFocused(false)
   }
@@ -64,7 +56,7 @@ export const Input = memo((props: InputProps) => {
         ref={ref}
         type={type}
         value={value}
-        onChange={onChangeHandler}
+        onChange={onChange}
         className={cls.input}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -72,7 +64,7 @@ export const Input = memo((props: InputProps) => {
         placeholder={placeholder}
         {...otherProps}
       />
-      <p className={cls.input__helperText}>{helperText}</p>
+      {error && <p className={cls.input__helperText}>{helperText}</p>}
     </div>
   )
 })

@@ -1,0 +1,47 @@
+.title {
+  margin-bottom: 24px;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  &__name {
+    font-size: 16px;
+    flex-grow: 1;
+    max-width: 50%;
+  }
+
+  &__input {
+    flex-grow: 1;
+    max-width: 50%;
+  }
+
+  &__radioGroup {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  &__checkbox {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__total {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &Start {
+    align-items: flex-start;
+  }
+}

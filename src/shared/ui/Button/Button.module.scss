@@ -5,6 +5,7 @@
   padding: 10px 14px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 34px;
   border: none;
   outline: none;
@@ -14,7 +15,13 @@
     background-color: var(--hint-color);
   }
 
+  &:hover {
+    cursor: not-allowed;
 
+    &:disabled {
+      background-color: var(--hint-color);
+    }
+  }
 }
 
 .normal {
