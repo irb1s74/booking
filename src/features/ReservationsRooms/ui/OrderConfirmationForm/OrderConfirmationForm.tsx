@@ -17,6 +17,7 @@ export const OrderConfirmationForm = memo((props: OrderConfirmationFormProps) =>
           {values.name}
           &nbsp;
           {values.surname}
+          &nbsp;
           {values.patronymic}
         </p>
       </div>
