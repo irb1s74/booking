@@ -3,7 +3,7 @@ import { boolean, date, number, object, string } from 'yup'
 const phoneRegExp = /[0-9]/i
 
 export const reservationsSchema = object({
-  numAdults: number().integer('Должно быть целым').min(1).max(10).required('Это обязательное поле'),
+  numAdults: number().integer('Должно быть целым').min(1).required('Это обязательное поле'),
   numTeenagers: number().integer('Должно быть целым'),
   numChildren: number()
     .integer('Должно быть целым')
