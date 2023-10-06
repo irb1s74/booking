@@ -17,22 +17,8 @@
 
   &__input {
     flex-grow: 1;
-    width: 100%;
     max-width: 50%;
   }
-
-  &__radioGroup {
-    flex-grow: 1;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-
-  &Start {
-    align-items: flex-start;
-  }
-
 
   @media screen and (max-width: 440px) {
     flex-direction: column;
@@ -46,27 +32,10 @@
 
     &__input {
       max-width: 100%;
-    }
-  }
-}
 
-.insurance {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-
-  &__name {
-    font-size: 16px;
-    flex-grow: 1;
-    max-width: 50%;
-  }
-
-  @media screen and (max-width: 440px) {
-    &__name {
-      max-width: 100%;
-      margin-bottom: 4px;
+      &:last-child {
+        margin-bottom: auto;
+      }
     }
   }
 }

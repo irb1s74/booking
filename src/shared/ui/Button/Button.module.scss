@@ -16,9 +16,9 @@
   }
 
   &:hover {
-    cursor: not-allowed;
 
     &:disabled {
+      cursor: not-allowed;
       background-color: var(--hint-color);
     }
   }

@@ -1,5 +1,7 @@
 .reservationsRooms {
   height: 100vh;
+  max-width: 640px;
+  margin: auto;
 
   &__header {
     margin-bottom: 8px;
@@ -19,6 +21,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+
+
   }
 
   &__footer {
@@ -28,9 +32,28 @@
     justify-content: space-between;
   }
 
-  &__nextBtnRight {
-    margin-left: auto;
-    width: 128px;
-    text-align: center;
+  &__nextBtn {
+    min-width: 128px;
+
+    &Right {
+      margin-left: auto;
+    }
+  }
+
+
+  @media screen and (max-width: 440px) {
+    &__footer {
+      align-items: stretch;
+      justify-content: center;
+      flex-direction: column-reverse;
+    }
+
+    &__nextBtn {
+      margin-bottom: 10px;
+
+      &Right {
+        margin: 0;
+      }
+    }
   }
 }

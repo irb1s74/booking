@@ -1,24 +1,17 @@
+import { memo, useEffect } from 'react'
+import { BrowserView, MobileView } from 'react-device-detect'
 import { FormikErrors, FormikTouched } from 'formik'
 import { Input } from 'shared/ui/Input'
 import { Radio } from 'shared/ui/Radio'
+import { Switch } from 'shared/ui/Switch'
 import { Checkbox } from 'shared/ui/Checkbox'
+import { Select } from 'shared/ui/Select'
+import { getPriceRoom } from '../../lib/getPriceRoom'
 import { IReservationsData } from '../../model/types/type'
 import classNames from 'classnames'
 import cls from './CostingForm.module.scss'
-import { useEffect, useState } from 'react'
-import { getPriceRoom } from 'features/ReservationsRooms/lib/getPriceRoom'
-
-interface ICostingForm {
-  numAdults: number
-  numTeenagers: number
-  numChildren: number
-  roomType: string
-  numNights: string
-  insurance: boolean
-}
 
 interface CostingFormProps {
-  // updateFields: (fields: Partial<ICostingForm>) => void
   values: IReservationsData
   handleChange: {
     (e: React.ChangeEvent<any>): void
@@ -32,20 +25,27 @@ interface CostingFormProps {
   }
   errors: FormikErrors<IReservationsData>
   touched: FormikTouched<IReservationsData>
+  handleSetFieldValue: (
+    field: string,
+    value: any,
+    shouldValidate?: boolean,
+  ) => Promise<FormikErrors<IReservationsData>> | Promise<void>
 }
 
-export const CostingForm = (props: CostingFormProps) => {
-  const { values, errors, touched, handleChange, handleBlur } = props
+export const CostingForm = memo((props: CostingFormProps) => {
+  const { values, errors, touched, handleChange, handleBlur, handleSetFieldValue } = props
 
   useEffect(() => {
     const teenagersDiscount = 0.5
     const nightsCost = getPriceRoom(values.roomType) * values.numNights * values.numAdults
     const teenagersCost =
-      getPriceRoom(values.roomType) * teenagersDiscount * values.numChildren * values.numNights
+      getPriceRoom(values.roomType) * teenagersDiscount * values.numTeenagers * values.numNights
     const insuranceCost = values.insurance ? (nightsCost + teenagersCost) * 0.1 : 0
 
-    values.total = nightsCost + teenagersCost + insuranceCost
+    handleSetFieldValue('total', nightsCost + teenagersCost + insuranceCost)
   }, [values.numAdults, values.numTeenagers, values.roomType, values.numNights, values.insurance])
+
+  console.log(values)
 
   return (
     <>
@@ -92,7 +92,7 @@ export const CostingForm = (props: CostingFormProps) => {
           helperText={errors.numChildren}
         />
       </div>
-      <div className={classNames(cls.field, [cls.fieldStart])}>
+      <BrowserView className={classNames(cls.field, [cls.fieldStart])}>
         <p className={cls.field__name}>Тип номера</p>
         <div className={cls.field__radioGroup}>
           <Radio
@@ -117,7 +117,22 @@ export const CostingForm = (props: CostingFormProps) => {
             checked={values.roomType === 'Люкс'}
           />
         </div>
-      </div>
+      </BrowserView>
+      <MobileView className={cls.field}>
+        <p className={cls.field__name}>Тип номера</p>
+        <Select
+          id='roomType'
+          className={cls.field__input}
+          value={values.roomType}
+          defaultValue={values.roomType}
+          onChange={handleSetFieldValue}
+          options={[
+            { value: 'Эконом', label: 'Эконом' },
+            { value: 'Стандарт', label: 'Стандарт' },
+            { value: 'Люкс', label: 'Люкс' },
+          ]}
+        />
+      </MobileView>
       <div className={cls.field}>
         <p className={cls.field__name}>Количество ночей</p>
         <Input
@@ -132,16 +147,21 @@ export const CostingForm = (props: CostingFormProps) => {
           helperText={errors.numNights}
         />
       </div>
-      <div className={cls.field}>
-        <p className={cls.field__name}>Страховка</p>
-        <div className={cls.field__checkbox}>
+      <div className={cls.insurance}>
+        <p className={cls.insurance__name}>Страховка</p>
+        <BrowserView>
           <Checkbox id='insurance' onChange={handleChange} />
-        </div>
+        </BrowserView>
+        <MobileView>
+          <Switch id='insurance' onChange={handleChange} />
+        </MobileView>
       </div>
+
       <div className={cls.field}>
-        <p className={cls.field__name}>Итого</p>
-        <div className={cls.field__total}>{values.total} руб.</div>
+        <p className={cls.field__name}>
+          Итого <b>{values.total}</b> руб.
+        </p>
       </div>
     </>
   )
-}
+})

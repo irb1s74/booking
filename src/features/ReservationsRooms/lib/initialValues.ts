@@ -5,7 +5,7 @@ export const initialValues = {
   roomType: 'Эконом',
   numNights: 1,
   insurance: false,
-  total: 0,
+  total: 1800,
   surname: '',
   name: '',
   patronymic: '',
