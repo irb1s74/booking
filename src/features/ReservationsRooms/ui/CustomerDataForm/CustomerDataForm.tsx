@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { FormikErrors, FormikTouched } from 'formik'
 import { Input } from 'shared/ui/Input'
+import { PhoneInput } from 'shared/ui/PhoneInput'
 import { IReservationsData } from '../../model/types/type'
 import cls from './CustomerDataForm.module.scss'
 
@@ -63,14 +64,13 @@ export const CustomerDataForm = memo((props: CustomerDataFormProps) => {
       </div>
       <div className={cls.field}>
         <p className={cls.field__name}>Номер телефона</p>
-        <Input
+        <PhoneInput
           id='phoneNumber'
           className={cls.field__input}
           value={values.phoneNumber}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder='+ 7 999 123 45-67'
-          type='text'
           error={touched.phoneNumber && Boolean(errors.phoneNumber)}
           helperText={errors.phoneNumber}
         />

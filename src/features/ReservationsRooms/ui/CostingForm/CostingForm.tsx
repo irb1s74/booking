@@ -156,7 +156,6 @@ export const CostingForm = memo((props: CostingFormProps) => {
           <Switch id='insurance' onChange={handleChange} />
         </MobileView>
       </div>
-
       <div className={cls.field}>
         <p className={cls.field__name}>
           Итого <b>{values.total}</b> руб.
