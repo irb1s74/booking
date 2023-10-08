@@ -27,7 +27,7 @@ export const ReservationsRooms = memo(() => {
     onSubmit: (values) => {
       new Promise((resolve) => {
         setTimeout(() => {
-          alert('Данные отправлены')
+          alert(JSON.stringify(values))
           resolve(values)
         }, 1000)
       }).then(() => navigate(getRoutePay()))

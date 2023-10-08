@@ -1,12 +1,13 @@
 .title {
   margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .field {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 24px;
 
   &__name {
@@ -26,8 +27,15 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-  }
 
+    & > div {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 
   &Start {
     align-items: flex-start;
@@ -54,7 +62,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 24px;
 
   &__name {
@@ -67,6 +74,33 @@
     &__name {
       max-width: 100%;
       margin-bottom: 4px;
+    }
+  }
+}
+
+
+.price {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+
+  &__name {
+    font-size: 16px;
+    flex-grow: 1;
+    max-width: 50%;
+  }
+
+  &__total {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 440px) {
+    margin-top: auto;
+    margin-bottom: 10px ;
+    &__name {
+      max-width: 100%;
     }
   }
 }
