@@ -45,8 +45,6 @@ export const CostingForm = memo((props: CostingFormProps) => {
     handleSetFieldValue('total', nightsCost + teenagersCost + insuranceCost)
   }, [values.numAdults, values.numTeenagers, values.roomType, values.numNights, values.insurance])
 
-  console.log(values)
-
   return (
     <>
       <p className={cls.title}>Расчет стоимости</p>
